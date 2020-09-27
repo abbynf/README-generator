@@ -33,7 +33,7 @@ const questions = [
     {
         type: "input",
         message: "If you created an application or package and would like other developers to contribute it, you will want to add guidelines for how to do so.",
-        name: "contributing"
+        name: "contribution"
     },
     {
         type: "input",
@@ -71,7 +71,38 @@ function init() {
         .prompt(questions)
         .then(function (response) {
             const markdownTemplate =
-                `My name is ${response.username}`
+`# ${response.title}
+
+## Table of Contents
+![Description](#Description)
+![Installation](#Installation)
+![Usage](#Usage)
+![License](#License)
+![Contribution](#Contribution)
+![Tests](#Tests)
+![Questions](#Questions)
+
+## Description
+${response.description}
+
+## Installation
+${response.installation}
+
+## Usage
+${response.usage}
+
+## License
+${response.license}
+
+## Contribution
+${response.contribution}
+
+## Tests
+${response.test}
+
+## Questions
+Please visit my github profile ${response.username} or email me at ${response.email} if you have any questions.
+`
             writeToFile(markdownTemplate)
         })
 }
