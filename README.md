@@ -8,6 +8,8 @@
 [Contribution](#Contribution)
 [Questions](#Questions)
 
+![Screenshot of Questions in the Application](./assets/screenshot.png)
+
 ## Description
 This application gives the user a series of questions in the command line. This application creates a dynamically generated README.md file based on the user input. 
 
