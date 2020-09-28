@@ -27,7 +27,7 @@ const questions = [
     {
         type: "list",
         message: "Please choose a license.",
-        choices: ["MIT license", "GNU AGPLv3", "GNU GPLv3", "Mozilla Public License 2.0"],
+        choices: ["MIT license", "GNU AGPL v3", "GNU GPL v3", "Mozilla Public License 2.0"],
         name: "license"
     },
     {
@@ -65,22 +65,35 @@ function writeToFile(data) {
     });
 }
 
+function licenseBadge(license){
+    switch (license) {
+        case "MIT license":
+            return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+        case "GNU AGPL v3":
+            return "[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)"
+        case "GNU GPL v3":
+            return "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+        case "Mozilla Public License 2.0":
+            return "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)"
+        }
+}
+
 // function to initialize program
 function init() {
     inquirer
         .prompt(questions)
         .then(function (response) {
             const markdownTemplate =
-`# ${response.title}
+`# ${response.title} ${licenseBadge(response.license)}
 
 ## Table of Contents
-![Description](#Description)
-![Installation](#Installation)
-![Usage](#Usage)
-![License](#License)
-![Contribution](#Contribution)
-![Tests](#Tests)
-![Questions](#Questions)
+[Description](#Description)
+[Installation](#Installation)
+[Usage](#Usage)
+[License](#License)
+[Contribution](#Contribution)
+[Tests](#Tests)
+[Questions](#Questions)
 
 ## Description
 ${response.description}
